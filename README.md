@@ -1,38 +1,27 @@
-# sv
+# No known conditions for "./action" specifier in "svelte" package [plugin vite:dep-scan]
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+run `pnpm dev` to see the error:
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
 ```
+✘ [ERROR] No known conditions for "./action" specifier in "svelte" package [plugin vite:dep-scan]
 
-## Developing
+script:/frontend/apps/kvist/src/ui/components/KvistPopover/KvistPopover.svelte?id=0:70:7:
+  70 │ import 'svelte/action'
+	 ╵        ~~~~~~~~~~~~~~~
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This error came from the "onResolve" callback registered here:
 
-```bash
-npm run dev
+../../node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:1150:20:
+  1150 │       let promise = setup({
+	   ╵                     ^
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+at setup (file:///frontend/node_modules/.pnpm/vite@6.1.0_@types+node@22.13.1_jiti@2.4.2_terser@5.37.0_tsx@4.19.2_yaml@2.7.0/node_modules/vite/dist/node/chunks/dep-CfG9u7Cn.js:18418:13)
+at handlePlugins (/frontend/node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:1150:21)
+at buildOrContextImpl (/frontend/node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:873:5)
+at Object.buildOrContext (/frontend/node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:699:5)
+at /frontend/node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:2038:68
+at new Promise (<anonymous>)
+at Object.context (/frontend/node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:2038:27)
+at Object.context (/frontend/node_modules/.pnpm/esbuild@0.24.2/node_modules/esbuild/lib/main.js:1880:58)
+at prepareEsbuildScanner (file:///frontend/node_modules/.pnpm/vite@6.1.0_@types+node@22.13.1_jiti@2.4.2_terser@5.37.0_tsx@4.19.2_yaml@2.7.0/node_modules/vite/dist/node/chunks/dep-CfG9u7Cn.js:18206:24)
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
